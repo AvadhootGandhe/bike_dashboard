@@ -1,0 +1,30 @@
+int speed = 0;
+int battery = 100;
+
+void setup() {
+  Serial.begin(115200);
+}
+
+void loop() {
+
+  // simulate speed increasing
+  speed = speed + 2;
+  if(speed > 120){
+    speed = 0;
+  }
+
+  // simulate battery decreasing slowly
+  battery = battery - 1;
+  if(battery < 20){
+    battery = 100;
+  }
+
+  // send data as JSON
+  Serial.print("{\"speed\":");
+  Serial.print(speed);
+  Serial.print(",\"battery\":");
+  Serial.print(battery);
+  Serial.println("}");
+
+  delay(500);
+}
